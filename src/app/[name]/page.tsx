@@ -9,7 +9,8 @@ interface Props {
 }
 
 export default async function RecipePage({ params }: Props) {
-	const parsedName = unDashify((await params).name);
+	const recipeName = (await params).name;
+	const parsedName = unDashify(recipeName);
 	const recipe = await getRecipeByName(parsedName);
 
 	if (!recipe) {
@@ -21,7 +22,7 @@ export default async function RecipePage({ params }: Props) {
 			<section className="mb-4 grid md:grid-cols-2 gap-x-4">
 				<article>
 					<img
-						src={`/${parsedName}.avif`}
+						src={`/${recipeName}.avif`}
 						alt="food"
 						className="w-full h-full object-cover aspect-square rounded-lg"
 					/>
