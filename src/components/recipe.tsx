@@ -11,6 +11,7 @@ import { PackagePlus } from "lucide-react";
 import { dashify } from "@/lib/utils";
 import { AddIngredients } from "./add-ingredients";
 import { Tag } from "./tag";
+import { Suspense } from "react";
 
 export function RecipePreview({ name, tags, ingredients }: RP) {
 	const slug = dashify(name);
@@ -42,9 +43,11 @@ export function RecipePreview({ name, tags, ingredients }: RP) {
 					</AddIngredients>
 				</CardTitle>
 				<CardDescription className="flex flex-wrap">
-					{tags.map((tag) => (
-						<Tag key={tag}>{tag}</Tag>
-					))}
+					<Suspense>
+						{tags.map((tag) => (
+							<Tag key={tag}>{tag}</Tag>
+						))}
+					</Suspense>
 				</CardDescription>
 			</CardHeader>
 		</Card>
